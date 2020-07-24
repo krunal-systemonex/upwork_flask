@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+table td {padding: 3px;}
+#canvas_container {
+    width: 700px;
+}
+
+
+
+    </style>
+</head>
+<body>
+<script>
+    $(function() {
+var paper = new Raphael(document.getElementById('canvas_container'), 600, 525);
+  // First convert TABLE data to objects
+  var aRows = $('#html5logo tbody tr:not(:first-child)');
+  var oData = {devices: []};
+  for(var i=0; i<aRows.length; i++) {
+    var $this = $(aRows[i]);
+    oData.devices[oData.devices.length] = {
+      device: $this.find('td:nth-child(1)').text(),
+      ratio: $this.find('td:nth-child(5)').text().split(' ')[0]
+    };
+   //   console.log(i, oData.device, oData.ratio);
+  }
+  // Okay we got a table of: "Device","ratio"
+  // We should now render it to SVG using Raphael
+  // I choose to iterate data from 0..number of rows
+  // so that we get fastest at bottom and slowest at top
+  var height = 40, x = 170, scale=6, devices = oData.devices.length;
+  var style = {
+    bg: 'rgba(0,0,0,.4)',
+    text: 'rgba(16,16,55,.7)',
+    value: 'rgba(16,16,0,.8)'
+  }
+  for(var i=0; i<50; i++) {
+    var xx = x+(i*scale);
+    var line = paper.path('M '+xx+',15 L '+xx+','+(height*devices*1.115));
+    line.attr({'stroke':style.bg});
+  }
+  for(var i=0; i<devices; i++) {
+    var me = oData.devices[i];
+    var y = (devices-i)*height;
+    var width = x+(me.ratio*scale);
+    var rectangle = paper.rect(x, y, 0, height*.9);
+    rectangle.attr({fill: style.bg, stroke: '#ddd', 'stroke-width': 0});
+    rectangle.animate({"width": width}, 1000*me.ratio/30);
+
+    var value = paper.text(width+x+20, y+(height*.5), me.ratio)
+        value.attr({'opacity':0, 'font-size': 12, 'stroke':style.value, 'text-align':'left'})
+          value.animate({"opacity": 1}, 2000);
+
+    var text = paper.text(90, y+(height*.5), me.device)
+        text.attr({'font-size': 12, 'stroke':style.text, 'width':'100px', 'text-align':'left'})
+
+
+  }
+})
+
+
+
+</script>
+<div class="container" ng-app="myApp" ng-controller="Example">
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Create SVG from HTML Table data - Using Raphael API</h2>
+            <p>I want to render a graph of data in a table using Raphael SVG/VML API.
+                <br>I use a table from "random" post on <a
+                        href="https://www.html5rocks.com/en/tutorials/svg/mobile_fundamentals/">HTML5Rocks</a> about
+                SVG.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-12">
+                <table border="1" id="html5logo" class="table table-striped">
+                    <caption style="caption-side:bottom;">HTML5 logo image size comparison</caption>
+                    <tbody>
+                    <tr>
+                        <th>Device</th>
+                        <th>Resolution</th>
+                        <th>PNG image</th>
+                        <th>JPEG image</th>
+                        <th>Image/Vector ratio</th>
+                    </tr>
+                    <tr>
+                        <td>iPhone 3G</td>
+                        <td>320x480</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-320x480.png">9.5k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-320x480.jpg">6.3k</a>
+                        </td>
+                        <td>4.4 (9.5)</td>
+                    </tr>
+                    <tr>
+                        <td>Nexus One</td>
+                        <td>480x800</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-480x800.png">15.4k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-480x800.jpg">9.8k</a>
+                        </td>
+                        <td>6.8 (14.7)</td>
+                    </tr>
+                    <tr>
+                        <td>DROID RAZR</td>
+                        <td>540x960</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-540x960.png">17.3k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-540x960.jpg">12k</a>
+                        </td>
+                        <td>8.4 (18.1)</td>
+                    </tr>
+                    <tr>
+                        <td>iPhone 4</td>
+                        <td>640x960</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x960.png">20.7k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x960.jpg">13.2k</a>
+                        </td>
+                        <td>9.25 (19.9)</td>
+                    </tr>
+                    <tr>
+                        <td>iPhone 5</td>
+                        <td>640x1136</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x1136.png">21.6k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x1136.jpg">14k</a>
+                        </td>
+                        <td>9.8 (21.1)</td>
+                    </tr>
+                    <tr>
+                        <td>Galaxy Nexus</td>
+                        <td>720x1280</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-720x1280.png">24.4k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-720x1280.jpg">15.8k</a>
+                        </td>
+                        <td>11 (23.8)</td>
+                    </tr>
+                    <tr>
+                        <td>iPad 1&amp;2</td>
+                        <td>1024x768</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1024x768.png">24.8k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1024x768.jpg">15.7k</a>
+                        </td>
+                        <td>11 (23.7)</td>
+                    </tr>
+                    <tr>
+                        <td>Galaxy Tab 10.1, Nexus 7</td>
+                        <td>1280x800</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1280x800.png">27.1k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1280x800.jpg">17.9k</a>
+                        </td>
+                        <td>12.5 (27)</td>
+                    </tr>
+                    <tr>
+                        <td>Kindle Fire HD</td>
+                        <td>1920x1200</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1920x1200.png">44.1k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1920x1200.jpg">29.9k</a>
+                        </td>
+                        <td>20.9 (45)</td>
+                    </tr>
+                    <tr>
+                        <td>iPad new</td>
+                        <td>2048x1536</td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-2048x1536.png">57.7k</a>
+                        </td>
+                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-2048x1536.jpg">39.6k</a>
+                        </td>
+                        <td>27.7 (59.7)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <div id="canvas_container"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="links">
+                    <li>
+                        <a href="https://net.tutsplus.com/tutorials/javascript-ajax/an-introduction-to-the-raphael-js-library/">An
+                            introduction to Raphael</a> on Tutsplus
+                    </li>
+                    <li><a href="https://www.html5rocks.com/en/tutorials/svg/mobile_fundamentals/">SPLASH VECTOR
+                        GRAPHICS ON YOUR RESPONSIVE SITE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
