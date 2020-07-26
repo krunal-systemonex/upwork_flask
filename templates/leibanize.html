@@ -88,96 +88,36 @@ var paper = new Raphael(document.getElementById('canvas_container'), 600, 525);
                         <th>JPEG image</th>
                         <th>Image/Vector ratio</th>
                     </tr>
+                    {% for item in data %}
                     <tr>
-                        <td>iPhone 3G</td>
-                        <td>320x480</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-320x480.png">9.5k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-320x480.jpg">6.3k</a>
-                        </td>
-                        <td>4.4 (9.5)</td>
+                        <td>{{item.client_name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.daily_profit_loss}}</td>
+                        <td>{{item.notional}}</td>
+                        <td>{{item.notional_minus_realized_gains}}</td>
+                        <td>{{item.net_notional_plus_minus_unrealized_gain_loss}}</td>
+                        <td>{{item.beginning_margin_balance}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        <td>{{item.unrealized_gain_loss}}</td>
+                        "_6":"beginning_margin_balance",
+                        "_7":"unrealized_gain_loss",
+                        "_8":"realized_gain_Loss",
+                        "_9":"realized_gain_Loss_total",
+                        "_10":"mgt_fee",
+                        "_11":"mgt_fee_per_day",
+                        "_12":"accrd_mgt_fee",
+                        "_13":"pf_fee",
+                        "HWM":"hwm",
+                        "_15":"invoice_amount",
+                        "NAV":"nav"
+                        }
                     </tr>
-                    <tr>
-                        <td>Nexus One</td>
-                        <td>480x800</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-480x800.png">15.4k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-480x800.jpg">9.8k</a>
-                        </td>
-                        <td>6.8 (14.7)</td>
-                    </tr>
-                    <tr>
-                        <td>DROID RAZR</td>
-                        <td>540x960</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-540x960.png">17.3k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-540x960.jpg">12k</a>
-                        </td>
-                        <td>8.4 (18.1)</td>
-                    </tr>
-                    <tr>
-                        <td>iPhone 4</td>
-                        <td>640x960</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x960.png">20.7k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x960.jpg">13.2k</a>
-                        </td>
-                        <td>9.25 (19.9)</td>
-                    </tr>
-                    <tr>
-                        <td>iPhone 5</td>
-                        <td>640x1136</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x1136.png">21.6k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-640x1136.jpg">14k</a>
-                        </td>
-                        <td>9.8 (21.1)</td>
-                    </tr>
-                    <tr>
-                        <td>Galaxy Nexus</td>
-                        <td>720x1280</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-720x1280.png">24.4k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-720x1280.jpg">15.8k</a>
-                        </td>
-                        <td>11 (23.8)</td>
-                    </tr>
-                    <tr>
-                        <td>iPad 1&amp;2</td>
-                        <td>1024x768</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1024x768.png">24.8k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1024x768.jpg">15.7k</a>
-                        </td>
-                        <td>11 (23.7)</td>
-                    </tr>
-                    <tr>
-                        <td>Galaxy Tab 10.1, Nexus 7</td>
-                        <td>1280x800</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1280x800.png">27.1k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1280x800.jpg">17.9k</a>
-                        </td>
-                        <td>12.5 (27)</td>
-                    </tr>
-                    <tr>
-                        <td>Kindle Fire HD</td>
-                        <td>1920x1200</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1920x1200.png">44.1k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-1920x1200.jpg">29.9k</a>
-                        </td>
-                        <td>20.9 (45)</td>
-                    </tr>
-                    <tr>
-                        <td>iPad new</td>
-                        <td>2048x1536</td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-2048x1536.png">57.7k</a>
-                        </td>
-                        <td><a href="/static/demos/svgmobile_fundamentals/images/html5-2048x1536.jpg">39.6k</a>
-                        </td>
-                        <td>27.7 (59.7)</td>
-                    </tr>
+                    {% endfor %}
+                    
                     </tbody>
                 </table>
             </div>

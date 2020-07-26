@@ -1,1 +1,5 @@
-EXCEL_FILE_PATH = "C:\\Users\\A105682568\\Desktop\\my_app"
+EXCEL_FILE_PATH = "/home/ubuntu/upwork_flask/"
+DEFAULT_CLIENT = 'RJO'
+DYNAMODB_TABLE_NAME = 'demoleibniz'
+
+
