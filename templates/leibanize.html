@@ -82,11 +82,22 @@ var paper = new Raphael(document.getElementById('canvas_container'), 600, 525);
                     <caption style="caption-side:bottom;">HTML5 logo image size comparison</caption>
                     <tbody>
                     <tr>
-                        <th>Device</th>
-                        <th>Resolution</th>
-                        <th>PNG image</th>
-                        <th>JPEG image</th>
-                        <th>Image/Vector ratio</th>
+                        <th>Client</th>
+                        <th>DATE</th>
+                        <th>DAILY Profit/Loss</th>
+                        <th>Notional minus realized gains</th>
+                        <th>Net Notional plus/minus unrealized gain/loss</th>
+                        <th>Beginning Margin Balance</th>
+                        <th>Unrealized Gain/Loss</th>
+                        <th>Realized Gain/Loss</th>
+                        <th>Realized Gain/Loss Total</th>
+                        <th>Mgt Fee</th>
+                        <th>Mgt Fee per day</th>
+                        <th>ACCRD Mgt Fee</th>
+                        <th>Pf fee</th>
+                        <th>HWM</th>
+                        <th>Invoice Amount</th>
+                        <th>NAV</th>
                     </tr>
                     {% for item in data %}
                     <tr>
