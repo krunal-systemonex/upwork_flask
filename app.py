@@ -12,7 +12,7 @@ def home():
     get_data = get_dynamo_db_data(client_name=client)
     print(get_data)
     # converttodf = callmethod2()
-    return render_template("leibanize.html", data=get_data)
+    return render_template("leibniz.html", data=get_data)
 
 
 @app.route('/download', methods=['GET'])
