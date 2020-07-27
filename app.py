@@ -9,8 +9,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     client = request.args.get('client',None)
+    print("CLIENT", client)
     get_data = get_dynamo_db_data(client_name=client)
-    print(get_data)
     # converttodf = callmethod2()
     return render_template("leibniz.html", data=get_data)
 
@@ -18,6 +18,7 @@ def home():
 @app.route('/download', methods=['GET'])
 def download():
     client = request.args.get('client',None)
+    print("CLIENT", client)
     get_data = get_dynamo_db_data(client_name=client)
         
     # Creates DataFrame.  
@@ -28,7 +29,4 @@ def download():
     return resp
 
 if __name__ == "__main__":
-    client=None
-    get_data = get_dynamo_db_data(client_name=client)
-    print(get_data)
     app.run(debug=True)

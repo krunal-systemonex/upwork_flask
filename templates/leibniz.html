@@ -75,20 +75,25 @@ $('.dataTables_length').addClass('bs-select');
     <br>
     <br>
 	<div class="container">
-        <div class="col">
-            <div class="col m6"
+        <div class="row">
+            <div class="col-md-5 col-sm-6">
+                <form method='GET' action="/" width="400" height="200">
+                    <select class="selectpicker" multiple name="client">
+                        <option value="RJO">RJO</option>
+                        <option value="Dummy">Dummy</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">FILTER CLIENT</button>
+        
+                </form>
+        
+            </div>
+            <div class="col-md-5 col-sm-6">
+                <form method='GET' action="/download">
+                    <button type="submit" class="btn btn-primary">EXPORT CSV</button>
+                </form>
+                        
+            </div>
         </div>
-        <form method='GET' action="/" width="400" height="200">
-            <select class="selectpicker" multiple name="client">
-                <option value="RJO">RJO</option>
-                <option value="DUMMY">RJO</option>
-            </select>
-            <button type="submit" class="btn btn-primary">FILTER CLIENT</button>
-
-        </form>
-        <form method='GET' action="/download">
-            <button type="submit" class="btn btn-primary">EXPORT CSV</button>
-        </form>
 	</div>
 	<div class="container">
         <div class="row">
@@ -141,19 +146,6 @@ $('.dataTables_length').addClass('bs-select');
             </div>
             <div class="col-md-7 col-sm-12">
                 <div id="canvas_container"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="links">
-                    <li>
-                        <a href="https://net.tutsplus.com/tutorials/javascript-ajax/an-introduction-to-the-raphael-js-library/">An
-                            introduction to Raphael</a> on Tutsplus
-                    </li>
-                    <li><a href="https://www.html5rocks.com/en/tutorials/svg/mobile_fundamentals/">SPLASH VECTOR
-                        GRAPHICS ON YOUR RESPONSIVE SITE</a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
