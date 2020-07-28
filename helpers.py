@@ -74,17 +74,20 @@ def update_dynamodb_records(df_lst):
                 print(mapped_dict)
                 batch.put_item(Item=mapped_dict)
 
-def get_dynamo_db_data(client_name=None):
-    cl = client_name if client_name else DEFAULT_CLIENT
-    response = table.query(
-        TableName=DYNAMODB_TABLE_NAME,
-        KeyConditionExpression=f'client_name = :client_name',
-        ExpressionAttributeValues={
-            ':client_name': cl
-        }
-    )
-    print(response['Items'])
-    return response['Items']
+
+def get_dynamo_db_data(client_name_lst=None):
+    cl_lst = client_name_lst if client_name_lst else [DEFAULT_CLIENT]
+    response_lst = []
+    for client in cl_lst:
+        response = table.query(
+            TableName=DYNAMODB_TABLE_NAME,
+            KeyConditionExpression=f'client_name = :client_name',
+            ExpressionAttributeValues={
+                ':client_name': client
+            }
+        )
+        response_lst.extend(response['Items'])
+    return response_lst
 
 # [program:hello_world]
 # directory=/home/ubuntu/hello_world

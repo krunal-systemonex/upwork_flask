@@ -9,17 +9,22 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     client = request.args.get('client',None)
+    print("BEFORESPLITCLIENT", client)
+    if client:
+        client = client.split(",")
     print("CLIENT", client)
-    get_data = get_dynamo_db_data(client_name=client)
+    get_data = get_dynamo_db_data(client_name_lst=client)
     # converttodf = callmethod2()
-    return render_template("leibniz.html", data=get_data)
+    return render_template("leibniz.html", data=get_data, client_val = client if client else '')
 
 
 @app.route('/download', methods=['GET'])
 def download():
     client = request.args.get('client',None)
+    if client:
+        client = client.split(",")
     print("CLIENT", client)
-    get_data = get_dynamo_db_data(client_name=client)
+    get_data = get_dynamo_db_data(client_name_lst=client)
         
     # Creates DataFrame.  
     df = pd.DataFrame(get_data)
